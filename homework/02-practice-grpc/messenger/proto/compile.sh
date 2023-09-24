@@ -1,6 +1,6 @@
 # For golang, uncomment line below:
 # 
-# protoc --go_out=.. --go-grpc_out=.. messenger.proto
+protoc --go_out=.. --go-grpc_out=.. messenger.proto
 
 
 # For python, uncomment all lines below:
