@@ -60,7 +60,7 @@ func main() {
 
 	r.POST("/sendMessage", func(c *gin.Context) {
 		// TODO: implement send message here, that parses body into protobuf and sends to the server
-		c.JSON(http.StatusOK, MessageResponse{SendTime: nil})  // TODO: do not forget to fill SendTime
+		c.JSON(http.StatusOK, MessageResponse{SendTime: nil}) // TODO: do not forget to fill SendTime
 		return
 	})
 
