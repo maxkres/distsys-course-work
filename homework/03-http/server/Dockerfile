@@ -1,10 +1,12 @@
-FROM python:3.11.5-slim-bullseye
+FROM golang:alpine AS builder
 
-WORKDIR /http/server
+WORKDIR /usr/app
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+COPY go.mod go.sum ./
+RUN go mod download
 
 COPY . .
 
-ENTRYPOINT ["python", "server.py"]
+RUN go build
+
+ENTRYPOINT ["./server"]
