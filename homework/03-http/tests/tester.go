@@ -158,8 +158,8 @@ func RunQuery(t *TC, env *Env, envDir string, opts RunOpts, query Query) {
 	)
 
 	transport := &http.Transport{
-		TLSHandshakeTimeout:   10 * time.Second,
-		DisableKeepAlives:     true,
+		TLSHandshakeTimeout: 10 * time.Second,
+		//DisableKeepAlives:     true,
 		DisableCompression:    !query.Gzip,
 		MaxIdleConns:          1,
 		IdleConnTimeout:       90 * time.Second,
