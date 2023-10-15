@@ -15,7 +15,7 @@ services:
             - /var/run/docker.sock:/tmp/docker.sock
             - data-volume:/data
         expose:
-            - 5000
+            - 3000
     worker:
         build: 
             context: worker

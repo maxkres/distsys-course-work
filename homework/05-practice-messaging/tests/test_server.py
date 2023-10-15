@@ -27,7 +27,7 @@ def get_containers():
 
 
 SERVER_HOST = 'web'
-SERVER_PORT = 5000
+SERVER_PORT = 3000
 URL = 'http://' + SERVER_HOST
 if SERVER_PORT != 80:
     URL += ':{}'.format(SERVER_PORT)
@@ -57,7 +57,7 @@ def test_get_image():
 def test_get_image_error():
     response = requests.get(f'{IMAGES_ENDPOINT}')
     image_ids = response.json()['image_ids']
-    not_existing_image_id = max(image_ids) + 1
+    not_existing_image_id = max(image_ids) + '1'
     response = requests.get(f'{IMAGES_ENDPOINT}/{not_existing_image_id}')
     assert response.status_code == 404
 

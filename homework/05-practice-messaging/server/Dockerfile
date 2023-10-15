@@ -1,14 +1,13 @@
-FROM python:3.8
+FROM golang:alpine
 
-RUN mkdir /root/app/
-WORKDIR /root/app/
-COPY requirements.txt .
+WORKDIR /app
 
-RUN pip install -r requirements.txt
+
+COPY go.mod go.sum ./
+RUN go mod download
 
 COPY . .
 
-ENV PYTHONPATH "${PYTHONPATH}:/root/app/"
-EXPOSE 5000
+RUN go build -o main .
 
-CMD ["bash", "-c", "while ! curl -s rabbitmq:15672 > /dev/null; do echo waiting for rabbitmq; sleep 3; done; python -u server.py"]
+CMD ["./main"]
