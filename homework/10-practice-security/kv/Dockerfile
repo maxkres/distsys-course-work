@@ -1,13 +1,13 @@
-FROM golang:1.20-alpine
+FROM golang:alpine
 
-WORKDIR /pracrice-security/kv
-COPY go.* .
+WORKDIR /app
 
-RUN go mod download -x
 
-COPY * .
+COPY go.mod go.sum ./
+RUN go mod download
 
-RUN go build .
+COPY . .
 
-ENTRYPOINT ["./kv"]
+RUN go build -o main cmd/main.go
 
+ENTRYPOINT ["./main"]

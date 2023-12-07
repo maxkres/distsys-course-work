@@ -8,6 +8,8 @@ services:
         command: ["--private", "/tmp/signature.pem", "--public", "/tmp/signature.pub", "--port", "8090"]
         ports:
             - 8090:8090
+        depends_on:
+            - redis
 
     kv:
         build: 
@@ -17,6 +19,17 @@ services:
         command: ["--public", "/tmp/signature.pub", "--port", "8090"]
         ports:
             - 8091:8090
+        depends_on:
+            - redis
+
+    redis:
+        image: redis:latest
+        command: >
+            --requirepass redispw
+        volumes:
+        - .:/data/redis
+        ports:
+        - "6379:6379"
 
     tests:
         build:
@@ -32,3 +45,4 @@ services:
         depends_on:
             - auth
             - kv
+            - redis

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package = "pkg/proto";
+
+message Token{
+    string token  = 1;
+}
+
+message Response {
+    string username = 1;
+}
+
+message Empty{
+}
+
+service Auth{
+    rpc CheckJWT(Token) returns (Response) {}
+}
