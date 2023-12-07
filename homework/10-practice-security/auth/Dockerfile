@@ -1,13 +1,13 @@
-FROM golang:1.20-alpine
+FROM golang:alpine
 
-WORKDIR /pracrice-security/auth
-COPY go.* .
+WORKDIR /app
 
-RUN go mod download -x
 
-COPY * .
+COPY go.mod go.sum ./
+RUN go mod download
 
-RUN go build .
+COPY . .
 
-ENTRYPOINT ["./auth"]
+RUN go build -o main cmd/main.go
 
+ENTRYPOINT ["./main"]
