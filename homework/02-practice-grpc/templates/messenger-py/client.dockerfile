@@ -6,7 +6,7 @@ RUN pip install -r requirements.txt
 
 RUN mkdir messenger
 COPY __init__.py messenger/__init__.py
-COPY client/ messenger/client-py/
+COPY client messenger/client-py/
 COPY proto messenger/proto/
 
 ENTRYPOINT ["python", "-m", "messenger.client.client"]
